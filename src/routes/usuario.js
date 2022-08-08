@@ -2,14 +2,15 @@ const {Router} = require('express');
 const { route } = require('../app');
 const router = Router();
 
-router.route('/')
+const { createUsuario, getUsuario, getUnUsuario, deleteUsuario, updateUsuario } = require('../controllers/usuario.controller')
 
-    .get()
-    .post()
+router.route('/')
+    .get(getUsuario)
+    .post(createUsuario)
 
 router.route('/:id')//para obtener, eliminar o actualizar un archivo por id especifico que lo recibira como un parametro por la URL
-    .get()
-    .delete()
-    .put()
+    .get(getUnUsuario)
+    .delete(deleteUsuario)
+    .put(updateUsuario)
 
 module.exports = router;

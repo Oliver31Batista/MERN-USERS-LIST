@@ -12,9 +12,9 @@ usuarioCtrl.createUsuario = async(req, res) => {
     const newUsuario = new Usuario({
         nombre: nombre,
         apellido: apellido,
-        correo: correo,
+        edad: edad,
         telefono: telefono,
-        edad: edad
+        correo: correo
     })
     await newUsuario.save();//guardamos un nuevo documento de lo que viene del cliente
     res.json({message: `El usuario de nombre: ${newUsuario.nombre} ha sido creado`})
@@ -27,7 +27,7 @@ usuarioCtrl.getUnUsuario = async(req, res) => {
 
 usuarioCtrl.deleteUsuario = async(req, res) => {
     await Usuario.findByIdAndDelete(req.params.id)
-    res.json({message: `El usuario ${Usuario.name} ha sido eliminado`})
+    res.json({message: `El usuario ha sido eliminado`})
 }
 
 usuarioCtrl.updateUsuario = async(req, res) => {
@@ -35,11 +35,11 @@ usuarioCtrl.updateUsuario = async(req, res) => {
     await Usuario.findByIdAndUpdate(req.params.id, {
         nombre,
         apellido,
-        edad, 
-        correo,
-        telefono
+        edad,
+        telefono,
+        correo, 
     })
-    res.json({message: `El usuario ${Usuario.name} ha sido actualizado`})
+    res.json({message: `El usuario ${nombre} ha sido actualizado`})
 }
 
 module.exports = usuarioCtrl;
