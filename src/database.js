@@ -4,13 +4,11 @@ const mongoose = require('mongoose');
 //cadena de conexion
 
 const URI = process.env.MONGODB_URI
-            ? process.env.MONGODB_URI
-            : 'mongodb://localhost/dbtest'
+  ? process.env.MONGODB_URI
+  : 'mongodb://localhost/dbtest';
 
-mongoose.connect(URI)//se va a conectar a traves de esta uri
+mongoose.connect(URI); //se va a conectar a traves de esta uri
 
-const connection = mongoose.connection;// aqui le decimos que se conecte
+const connection = mongoose.connection; // aqui le decimos que se conecte
 
-connection.once('open', ()=>(
-    console.log('Database connected:', URI)
-))
+connection.once('open', () => console.log('Database connected:', URI));

@@ -1,13 +1,12 @@
-const usuarioCtrl = {}
-
+const usuarioCtrl = {}//declaro la constante vacia para luego darle los valores que va a tener
 const Usuario = require('../models/Usuario')
 
 usuarioCtrl.getUsuario = async(req, res) => {
-    const usuarios = await Usuario.find()
-    res.json(usuarios)
+    const usuarios = await Usuario.find()//al modelo usuario que haga una operacion de fin para que traiga todo lo que contiene
+    res.json(usuarios)//aqui devuelvo la informacion en formato json para que pueda ser interpretada por el cliente
 }
 
-usuarioCtrl.createUsuario = async(req, res) => {
+usuarioCtrl.createUsuario = async(req, res) => { console.log('e"entro, a crear')
     const {nombre, apellido, correo, telefono, edad} = req.body;//cuerpo que viene por parte del cliente (json)
     const newUsuario = new Usuario({
         nombre: nombre,
@@ -15,12 +14,14 @@ usuarioCtrl.createUsuario = async(req, res) => {
         edad: edad,
         telefono: telefono,
         correo: correo
+
     })
     await newUsuario.save();//guardamos un nuevo documento de lo que viene del cliente
     res.json({message: `El usuario de nombre: ${newUsuario.nombre} ha sido creado`})
 }
 
 usuarioCtrl.getUnUsuario = async(req, res) => {
+    console.log("entro, a get uno");
     const usuario = await Usuario.findById(req.params.id)
     res.json(usuario)
 }
